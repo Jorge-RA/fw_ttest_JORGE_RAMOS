@@ -21,4 +21,38 @@ TOPICS:
 
 El MQTTClient de la ESP32 está suscrito al topic "pc", no realiza ninguna función si se le envía un mensaje, pero sí lo imprime por el terminal.
 
+FORMATO DE ENVÍO DE DATOS:
+- Formato de telemetría:
+  {
+        'procces area': str,
+        'fecha': str,
+        'hora': str,
+        'voltaje L1-N': int,
+        'voltaje L2-N': int,
+        'voltaje L3-N': int,
+        'current L1': int,
+        'current L2': int,
+        'current L3': int,
+        'cumulative Energy imported' : int,
+        'power Factor L1': int,
+        'power Factor L2': int,
+        'power Factor L3': int
+  }
+  
+- Formato de eventos(esp/measure/alert):
+  {
+      'fecha': str,
+      'hora': str,
+      'msg': 'Error, overload in any of the variables',
+      'procces area': str,
+      'payload': alert_dict
+  }
+  
+  alert_dict = {
+  '{measure}': int,
+  '{measure} recommended': int
+  }
+
+
+
 DIAGRAMA DE CONEXIÓN MODBUS ESP32-SIEMENS PAC3200 adjunto.
