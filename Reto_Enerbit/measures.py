@@ -27,7 +27,7 @@ class Measure:
         }
         #---Set TimeZone---
         self.local_time = LocalTime()
-        self.local_time.setRTCWithLocalTime()
+        self.local_time.setRTCWithLocalTime() #Update the RTC at local time zone
 
     def set_callback(self, fun):
         self.cb_alert = fun
@@ -56,11 +56,11 @@ class Measure:
     def validate_measures(self,measure):
         error_payload = {}
         for key, value in measure.items():
-            if(key !='procces area' and key != 'fecha' and key !='hora'):
+            if(key !='procces area' and key != 'fecha' and key !='hora'): #No validar esas key, no son mediciones
                 if( measure[key] > self.limit_measure[key] ):
                     error_payload.update({key:value, '{} recommended'.format(key):self.limit_measure[key]})
 
-        if(bool(error_payload)):
+        if(bool(error_payload)):#if error_payload is empty
             payload = {
             'fecha': self.local_time.fecha,
             'hora': self.local_time.hora,
