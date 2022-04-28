@@ -58,7 +58,7 @@ class Measure:
         for key, value in measure.items():
             if(key !='procces area' and key != 'fecha' and key !='hora'):
                 if( measure[key] > self.limit_measure[key] ):
-                    error_payload.update({key:value, '{} recomented'.format(key):self.limit_measure[key]})
+                    error_payload.update({key:value, '{} recommended'.format(key):self.limit_measure[key]})
 
         if(bool(error_payload)):
             payload = {
